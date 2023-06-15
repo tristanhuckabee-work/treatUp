@@ -122,16 +122,13 @@ const heros = [
   },
 ]
 
-const monsterNames = monsters.map(user => user.userName);
-const heroNames = heros.map(user => user.userName);
 const users = [...monsters, ...heros, ]
-const userNames = [...monsterNames, ...heroNames ]
+const userNames = users.map(user => user.userName);
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert(opts, users, {});
   },
-
   down: async (queryInterface, Sequelize) => {
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete(opts, {
