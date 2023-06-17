@@ -18,7 +18,7 @@ const venues = [
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert(opts, groups, {});
+    return queryInterface.bulkInsert(opts, venues, {});
   },
 
   down: async (queryInterface, Sequelize) => {
