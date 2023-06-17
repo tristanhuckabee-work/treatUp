@@ -1,38 +1,25 @@
 'use strict';
 
 const env = process.env.NODE_ENV;
-let opts = { tableName: 'Groups'};
+let opts = { tableName: 'Venues'};
 if (env === 'production') { opts.schema = process.env.SCHEMA }
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Groups', {
+    await queryInterface.createTable('Venues', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      organizerId: {
+      groupId: {
         allowNull: false,
         type: Sequelize.INTEGER
       },
-      name: {
+      address: {
         allowNull: false,
         type: Sequelize.STRING
-      },
-      about: {
-        allowNull: false,
-        type: Sequelize.STRING
-      },
-      type: {
-        allowNull: false,
-        type: Sequelize.ENUM('In Person', 'Remote', 'Hybrid')
-      },
-      private: {
-        allowNull: false,
-        defaultValue: false,
-        type: Sequelize.BOOLEAN
       },
       city: {
         allowNull: false,
@@ -46,8 +33,13 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
-      previewImage: {
-        type: Sequelize.STRING
+      lat: {
+        allowNull: false,
+        type: Sequelize.FLOAT
+      },
+      lng: {
+        allowNull: false,
+        type: Sequelize.FLOAT
       },
       createdAt: {
         allowNull: false,
