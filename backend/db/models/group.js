@@ -18,6 +18,13 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'groupId',
         onDelete: 'CASCADE'
       });
+      Group.hasMany(model.Image, {
+        foreignKey: 'imageableId',
+        constraints: false,
+        scope: {
+          imageableType: 'Group'
+        }
+      });
     }
   }
   Group.init({
