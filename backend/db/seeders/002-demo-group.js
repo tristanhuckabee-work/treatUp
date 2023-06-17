@@ -4,7 +4,7 @@ const env = process.env.NODE_ENV;
 let opts = { tableName: 'Groups' };
 if (env === 'production') { opts.schema = process.env.SCHEMA }
 
-const public = [
+const publicGroup = [
   { name: 'Hero Squad',
     organizerId:1,
     about: "If you're dressing as a hero this Halloween then this is the group for you!",
@@ -16,7 +16,7 @@ const public = [
     previewImage: 'https://res.cloudinary.com/dzsgront4/image/upload/v1686805353/everyday-heros_covvol.jpg'
   }
 ];
-const private = [
+const privateGroup = [
   { name: "Exquisite Corpse",
     organizerId:3,
     about: "We're a group of totally not real monsters that hang out on our very special day.",
@@ -29,7 +29,7 @@ const private = [
   }
 ];
 
-const groups = [...public, ...private];
+const groups = [...publicGroup, ...privateGroup];
 const groupNames = groups.map(group => group.name);
 
 module.exports = {
