@@ -8,9 +8,16 @@ module.exports = (sequelize, DataTypes) => {
       Group.belongsToMany(models.User, {
         through: models.Member,
         foreignKey: 'groupId',
-        otherKey: 'memberId'
+        otherKey: 'memberId',
       });
-      Group.hasMany(models.Venue, { foreignKey: 'groupId' });
+      Group.hasMany(models.Venue, {
+        foreignKey: 'groupId',
+        onDelete: 'CASCADE'
+      });
+      Group.hasMany(models.Event, {
+        foreignKey: 'groupId',
+        onDelete: 'CASCADE'
+      });
     }
   }
   Group.init({
