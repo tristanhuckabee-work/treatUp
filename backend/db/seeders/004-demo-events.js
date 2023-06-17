@@ -15,7 +15,6 @@ const events = [
     endDate:'2024-01-01'
   }
 ];
-const eventNames = events.map(event => event.name);
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
@@ -23,6 +22,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete(opts, eventNames, {});
+    return queryInterface.bulkDelete(opts, {}, {});
   }
 };
