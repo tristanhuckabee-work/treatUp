@@ -8,6 +8,7 @@ const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 
 
+// Sign up
 const validateSignup = [
   check('email')
     .exists({ checkFalsy: true })
@@ -27,9 +28,6 @@ const validateSignup = [
     .withMessage('Password must be 6 characters or more.'),
   handleValidationErrors
 ];
-
-
-// Sign up
 router.post('/', validateSignup, async (req, res) => {
   const { email, password, userName } = req.body;
   const hashedPassword = bcrypt.hashSync(password);
@@ -43,5 +41,16 @@ router.post('/', validateSignup, async (req, res) => {
   });
 }
 );
+// GET ALL USERS
+router.get('/', async (req, res) => {
+  const users = await User.findAll();
+  return res.json({
+    users: users.map(user => {
+      const  { id, email, userName } = user;
+      return { id, email, userName };
+    })
+  });
+})
+
 
 module.exports = router;
